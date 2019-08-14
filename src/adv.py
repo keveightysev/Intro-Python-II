@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +40,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player('Kevin', room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,10 +54,11 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 while True:
-    command = 0
-    cmd = input('Enter "help" to see available commands, otherwise enter a command: ').split() if command == 0 else input('Enter a command: ')
+    print('\nYour current location:\n')
+    print(player.current_room)
+    cmd = input('Enter a command: ')
     if cmd[0] in ['n', 's', 'e', 'w']:
-        print('You\'ve selected a direction!')
+        player.travel(cmd[0])
     elif cmd[0] == 'q':
         break
     elif  cmd[0] == 'help':
